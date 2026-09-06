@@ -8,7 +8,7 @@ title: Finding and fixing an unauthenticated RCE in the VS Code Erlang extension
 
 ## Summary
 
-The extension's local servers listened on every network interface instead of loopback. Its debugger command channel evaluates whatever it receives with `erl_eval`, with no authentication, so anyone able to reach the developer's machine on those ports could run arbitrary Erlang — and therefore arbitrary OS commands — as the developer. A second, opt-in path (Erlang distribution with a predictable cookie) gave the same result through the classic BEAM route. Both are fixed in 1.1.5 by binding everything to `127.0.0.1`.
+The extension's local servers listened on every network interface instead of loopback. Its debugger command channel evaluates whatever it receives with `erl_eval`, with no authentication, so anyone able to reach the developer's machine on those ports could run arbitrary Erlang — and therefore arbitrary OS commands — as the developer. A second, opt-in path (Erlang distribution with a predictable cookie) gave the same result through the classic BEAM route. Both are fixed in 1.1.5 by binding everything to `127.0.0.1`. The extension has ~213,000 installs on the VS Code Marketplace (September 2026).
 
 ## Discovery
 
@@ -130,4 +130,5 @@ Loopback binding removes the network exposure; it is not authentication. Process
 - Fixes: <https://github.com/pgourlain/vscode_erlang/pull/329> · <https://github.com/pgourlain/vscode_erlang/pull/330>
 - Advisory: <https://github.com/pgourlain/vscode_erlang/security/advisories/GHSA-573p-mcvv-hchg>
 - Release notes: <https://github.com/pgourlain/vscode_erlang/blob/master/CHANGELOG.md>
+- Marketplace: <https://marketplace.visualstudio.com/items?itemName=pgourlain.erlang>
 - Precedent: CVE-2022-24706 — Apache CouchDB, Erlang distribution reachable with a default cookie
