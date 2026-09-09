@@ -11,4 +11,5 @@ GitHub: [erts-sched](https://github.com/erts-sched)
 
 ## Security research
 
+- **2026-09** — [Documenting how to bind a distributed Erlang node to loopback](security/otp-loopback-node-docs/) — the general lesson of the extension bug, taken upstream to Erlang/OTP as a measured documentation change: [erlang/otp#11617](https://github.com/erlang/otp/pull/11617), with a [reproducible measurement repository](https://github.com/erts-sched/otp-loopback-node-measurements).
 - **2026-09** — [Finding and fixing an unauthenticated RCE in the VS Code Erlang extension](security/vscode-erlang-loopback-rce/) — LSP, debugger and Erlang distribution sockets bound to all interfaces, with unauthenticated `erl_eval`; [GHSA-573p-mcvv-hchg](https://github.com/pgourlain/vscode_erlang/security/advisories/GHSA-573p-mcvv-hchg) (High), fixed in 1.1.5, ~213k installs.
