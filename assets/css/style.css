@@ -1,11 +1,12 @@
-/* Trust boundaries of the BEAM runtime, measured — reading layout.
-   Tokens: light on :root, dark under prefers-color-scheme. Erlang's red is the
-   one accent; measured values, dates and code are set in mono. */
+/* Conventional layout: full-width header and footer bars, one centered
+   container shared by header, content and footer. Tokens: light on :root,
+   dark under prefers-color-scheme. */
 :root {
   --ground: #F5F7F8;
+  --bar: #FFFFFF;
   --ink: #151A1F;
   --muted: #5D6B75;
-  --line: #7F8D98;   /* 3.2:1 on the ground: borders and rules are visible, not decorative */
+  --line: #7F8D98;
   --hairline: #D9E0E5;
   --accent: #A3193A;
   --accent-ink: #7E1230;
@@ -16,11 +17,11 @@
   --open-bg: #F4EBC8;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  --measure: 40rem;   /* one frame for nav, content and footer; ~75 characters per line of prose */
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --ground: #101418;
+    --bar: #151A1F;
     --ink: #E7EBEE;
     --muted: #98A4AD;
     --line: #616E79;
@@ -37,55 +38,53 @@
 
 * { box-sizing: border-box; }
 html { font-size: 17px; -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--ground);
-  color: var(--ink);
-  font-family: var(--sans);
-  line-height: 1.55;
-}
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); line-height: 1.55; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--ground); padding: 8px 12px; }
 .skip:focus { left: 12px; z-index: 10; }
 
-/* frame */
-header.site nav, main, footer.site { max-width: calc(var(--measure) + 48px); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
-/* rules (nav bottom, footer top, h2) are drawn inside the padding box, so they run exactly the content width */
-header.site nav, footer.site { background: linear-gradient(var(--hairline), var(--hairline)) no-repeat; background-size: calc(100% - 48px) 1px; }
-header.site nav { background-position: 24px bottom; }
-footer.site { background-position: 24px top; }
-header.site nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; align-items: baseline; padding-top: 20px; padding-bottom: 16px; }
-header.site nav a { color: var(--muted); text-decoration: none; font-size: 0.92rem; letter-spacing: 0.01em; }
-header.site nav a:hover, header.site nav a:focus-visible { color: var(--accent); }
-header.site nav a.home { color: var(--ink); font-weight: 600; font-size: 1.08rem; }
-header.site nav .sections { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
-main { padding-top: 34px; padding-bottom: 56px; }
-footer.site { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; padding-top: 16px; padding-bottom: 36px; color: var(--muted); font-size: 0.88rem; }
-footer.site a { color: var(--muted); }
-footer.site a:hover { color: var(--accent); }
-footer.site .sep { padding: 0 0.6em; }
+/* the one container: header, content and footer share it */
+.container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+/* header bar */
+.site-header { background: var(--bar); border-bottom: 1px solid var(--hairline); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; min-height: 60px; padding-top: 12px; padding-bottom: 12px; }
+.brand { color: var(--ink); font-weight: 600; font-size: 1.1rem; text-decoration: none; }
+.brand:hover { color: var(--accent); }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.site-header nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+.site-header nav a:hover, .site-header nav a:focus-visible { color: var(--accent); }
+
+/* content */
+main { padding: 36px 0 56px; }
+
+/* footer bar */
+.site-footer { background: var(--bar); border-top: 1px solid var(--hairline); color: var(--muted); font-size: 0.9rem; }
+.site-footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; padding-bottom: 28px; }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--accent); }
 
 /* type */
-h1 { font-size: 1.9rem; line-height: 1.15; letter-spacing: -0.012em; margin: 0 0 0.55em; max-width: 26ch; text-wrap: balance; }
-h2 { font-size: 1.28rem; line-height: 1.25; margin: 2.2em 0 0.6em; padding-top: 0.6em; border-top: 1px solid var(--hairline); }
+h1 { font-size: 1.9rem; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 0.5em; }
+h2 { font-size: 1.3rem; line-height: 1.25; margin: 2em 0 0.6em; padding-top: 0.6em; border-top: 1px solid var(--hairline); }
 h3 { font-size: 1.05rem; margin: 1.5em 0 0.4em; }
 p, ul, ol, blockquote { margin: 0 0 1em; }
 li { margin-bottom: 0.25em; }
-a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a { color: var(--accent); }
 a:hover { color: var(--accent-ink); }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 em { color: var(--muted); }
 strong { font-weight: 600; }
 blockquote { border-left: 3px solid var(--hairline); margin-left: 0; padding-left: 16px; color: var(--muted); }
-.thesis { font-size: 1.12rem; line-height: 1.5; color: var(--muted); margin-bottom: 1.6em; }
+.thesis { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.6em; }
 
 /* mono: values, dates, code */
 code, .eyebrow { font-family: var(--mono); }
 code { font-size: 0.86em; }
 :not(pre) > code { background: var(--code-bg); padding: 0.1em 0.38em; border-radius: 4px; }
-pre { background: var(--code-bg); padding: 14px 16px; border-radius: 6px; overflow-x: auto; line-height: 1.45; margin: 0 0 1.2em; max-width: 100%; }
+pre { background: var(--code-bg); padding: 14px 16px; border-radius: 6px; overflow-x: auto; line-height: 1.45; margin: 0 0 1.2em; }
 pre code { font-size: 0.84rem; background: none; padding: 0; }
 
-/* tables: the measurements; wider than prose, scroll inside */
+/* tables: scroll inside their own box */
 .table-wrap { overflow-x: auto; margin: 0 0 1.3em; }
 .table-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 table { border-collapse: collapse; font-size: 0.9rem; margin: 0 0 1.3em; line-height: 1.4; }
@@ -93,16 +92,14 @@ table { border-collapse: collapse; font-size: 0.9rem; margin: 0 0 1.3em; line-he
 th, td { border: 1px solid var(--line); padding: 7px 11px; vertical-align: top; text-align: left; }
 th { background: var(--code-bg); font-weight: 600; white-space: nowrap; }
 td:first-child { white-space: nowrap; }
-td code, th code { font-size: 0.84em; }
 
-/* index entries: date line, title, one meta line, status chip; one column, inside the frame */
-.entry { display: grid; grid-template-columns: 1fr; gap: 2px; margin: 0 0 1.45em; }
-.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.entry .eyebrow { color: var(--muted); font-size: 0.78rem; letter-spacing: 0.05em; }
+/* index entries */
+.entry { margin: 0 0 1.5em; }
+.entry .eyebrow { display: block; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.05em; margin-bottom: 2px; }
 .entry .t { font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
 .entry .t a { color: var(--ink); text-decoration: none; }
 .entry .t a:hover { color: var(--accent); text-decoration: underline; }
-.entry .m { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+.entry .m { color: var(--muted); font-size: 0.92rem; line-height: 1.45; margin-top: 2px; }
 .entry .m a { color: var(--muted); }
 .entry .m a:hover { color: var(--accent); }
 .chip { display: inline-block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; vertical-align: 1px; }
@@ -111,9 +108,6 @@ td code, th code { font-size: 0.84em; }
 
 @media (max-width: 640px) {
   html { font-size: 16px; }
-  header.site nav, main, footer.site { padding-left: 16px; padding-right: 16px; }
-  header.site nav, footer.site { background-size: calc(100% - 32px) 1px; }
-  header.site nav { background-position: 16px bottom; }
-  footer.site { background-position: 16px top; }
+  .container { padding: 0 16px; }
   h1 { font-size: 1.55rem; }
 }

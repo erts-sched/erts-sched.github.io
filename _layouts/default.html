@@ -13,34 +13,37 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site">
-    <nav aria-label="site">
-      <a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <span class="sections">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav aria-label="site">
         <a href="{{ '/#security-research' | relative_url }}">Security research</a>
         <a href="{{ '/#measurements' | relative_url }}">Measurements</a>
         <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub</a>
-      </span>
-    </nav>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
-    {{ content }}
+    <div class="container">
+      {{ content }}
+    </div>
   </main>
 
-  <footer class="site">
-    <span>{{ site.description }}</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/erts-sched" target="_blank" rel="noopener">github.com/erts-sched</a>
+  <footer class="site-footer">
+    <div class="container">
+      <span>{{ site.description }}</span>
+      <a href="https://github.com/erts-sched" target="_blank" rel="noopener">github.com/erts-sched</a>
+    </div>
   </footer>
+
   <script>
-    // external links open in a new tab; internal ones stay in this one
     for (const a of document.querySelectorAll('main a[href^="http"]')) {
-      if (a.hostname !== location.hostname) {
-        a.target = "_blank"; a.rel = "noopener";
-      }
+      if (a.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener"; }
     }
-    // tables keep table semantics; a focusable region scrolls them sideways
     for (const t of document.querySelectorAll("main table")) {
-      const w = document.createElement("div"); w.className = "table-wrap"; w.tabIndex = 0; w.setAttribute("role", "region"); w.setAttribute("aria-label", "table, scrolls sideways");
+      const w = document.createElement("div"); w.className = "table-wrap"; w.tabIndex = 0;
       t.parentNode.insertBefore(w, t); w.appendChild(t);
     }
   </script>
