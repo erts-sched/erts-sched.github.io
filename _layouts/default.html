@@ -16,9 +16,11 @@
   <header class="site">
     <nav aria-label="site">
       <a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <a href="{{ '/#security-research' | relative_url }}">Security research</a>
-      <a href="{{ '/#measurements' | relative_url }}">Measurements</a>
-      <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub</a>
+      <span class="sections">
+        <a href="{{ '/#security-research' | relative_url }}"{% if page.url contains '/security/' %} aria-current="true"{% endif %}>Security research</a>
+        <a href="{{ '/#measurements' | relative_url }}">Measurements</a>
+        <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub</a>
+      </span>
     </nav>
   </header>
 
