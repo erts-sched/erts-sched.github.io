@@ -18,7 +18,7 @@
       <a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>
       <a href="{{ '/#security-research' | relative_url }}">Security research</a>
       <a href="{{ '/#measurements' | relative_url }}">Measurements</a>
-      <a href="https://github.com/erts-sched">GitHub</a>
+      <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
 
@@ -27,7 +27,13 @@
   </main>
 
   <footer class="site">
-    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>{% if page.url != "/" %}<span class="sep">·</span><span>{{ site.description }}</span>{% endif %}<span class="sep">·</span><a href="https://github.com/erts-sched">github.com/erts-sched</a>
+    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>{% if page.url != "/" %}<span class="sep">·</span><span>{{ site.description }}</span>{% endif %}<span class="sep">·</span><a href="https://github.com/erts-sched" target="_blank" rel="noopener">github.com/erts-sched</a>
   </footer>
+  <script>
+    // external links open in a new tab; internal ones stay in this one
+    for (const a of document.querySelectorAll('main a[href^="http"]')) {
+      if (a.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener"; }
+    }
+  </script>
 </body>
 </html>
