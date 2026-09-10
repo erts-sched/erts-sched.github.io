@@ -82,8 +82,9 @@ Twenty-four cases, run on OTP 27.3.4.17, 28.5.0.6 and 29.0.6 (the version of
 `maint`), IPv4 and IPv6, on the host and in containers with and without the
 host's firewall. Each "refused" result has a control on the same path that
 succeeds, so a refusal is attributable to the socket binding and not to
-filtering — and the whole matrix was repeated in a container with its own
-network namespace (no host rules) to confirm it.
+filtering — and the whole matrix, except the one row that needs a global IPv6
+address, was repeated on OTP 27, 28 and 29 in a container with its own network
+namespace (no host rules) to confirm it.
 
 The point of the repository is that a reviewer — or anyone, later — does not
 have to take the table on faith or rebuild the setup by hand. The analysis
@@ -92,7 +93,7 @@ TLS distribution) and why, so the boundary of the evidence is explicit.
 
 ## Status
 
-Open, CLA signed, mergeable, awaiting review. Whatever the maintainers decide,
+Open, DCO and CLA signed, mergeable, awaiting review. Whatever the maintainers decide,
 the gap is now described publicly, with evidence that reproduces.
 
 ## References
