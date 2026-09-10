@@ -16,7 +16,7 @@
   --open-bg: #F4EBC8;
   --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  --measure: 46rem;   /* one frame: nav, content and footer share this width and both edges */
+  --measure: 40rem;   /* one frame for nav, content and footer; ~75 characters per line of prose */
   --gutter: 7.4rem;   /* the dates hang here, left of the frame */
 }
 @media (prefers-color-scheme: dark) {
