@@ -50,14 +50,17 @@ body {
 
 /* frame */
 header.site nav, main, footer.site { max-width: calc(var(--measure) + var(--gutter) + 48px); margin: 0 auto; padding-left: calc(24px + var(--gutter)); padding-right: 24px; }
-header.site { border-bottom: 1px solid var(--hairline); }
+/* rules (nav bottom, footer top, h2) are drawn inside the padding box, so they run exactly the content width */
+header.site nav, footer.site { background: linear-gradient(var(--hairline), var(--hairline)) no-repeat; background-size: calc(100% - 24px - var(--gutter) - 24px) 1px; }
+header.site nav { border-bottom: 0; background-position: calc(24px + var(--gutter)) bottom; }
+footer.site { border-top: 0; background-position: calc(24px + var(--gutter)) top; }
 header.site nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; align-items: baseline; padding-top: 20px; padding-bottom: 16px; }
 header.site nav a { color: var(--muted); text-decoration: none; font-size: 0.92rem; letter-spacing: 0.01em; }
 header.site nav a:hover, header.site nav a:focus-visible { color: var(--accent); }
 header.site nav a.home { color: var(--ink); font-weight: 600; font-size: 1.08rem; }
 header.site nav .sections { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
 main { padding-top: 34px; padding-bottom: 56px; }
-footer.site { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; border-top: 1px solid var(--hairline); padding-top: 16px; padding-bottom: 36px; color: var(--muted); font-size: 0.88rem; }
+footer.site { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; padding-top: 16px; padding-bottom: 36px; color: var(--muted); font-size: 0.88rem; }
 footer.site a { color: var(--muted); }
 footer.site a:hover { color: var(--accent); }
 footer.site .sep { padding: 0 0.6em; }
@@ -111,6 +114,9 @@ td code, th code { font-size: 0.84em; }
 @media (max-width: 640px) {
   html { font-size: 16px; }
   header.site nav, main, footer.site { padding-left: 16px; padding-right: 16px; }
+  header.site nav, footer.site { background-size: calc(100% - 32px) 1px; }
+  header.site nav { background-position: 16px bottom; }
+  footer.site { background-position: 16px top; }
   h1 { font-size: 1.55rem; }
   .entry { grid-template-columns: 1fr; gap: 2px; margin-left: 0; }
   .entry .eyebrow, .entry .t, .entry .m { grid-column: 1; grid-row: auto; text-align: left; }
