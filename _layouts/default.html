@@ -27,9 +27,7 @@
   </main>
 
   <footer class="site">
-    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <span>{{ site.description }}</span>
-    <a href="https://github.com/erts-sched">github.com/erts-sched</a>
+    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>{% if page.url != "/" %}<span class="sep">·</span><span>{{ site.description }}</span>{% endif %}<span class="sep">·</span><a href="https://github.com/erts-sched">github.com/erts-sched</a>
   </footer>
 </body>
 </html>
