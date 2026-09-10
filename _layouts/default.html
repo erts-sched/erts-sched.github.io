@@ -18,7 +18,7 @@
       <a class="home" href="{{ '/' | relative_url }}">{{ site.title }}</a>
       <a href="{{ '/#security-research' | relative_url }}">Security research</a>
       <a href="{{ '/#measurements' | relative_url }}">Measurements</a>
-      <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/erts-sched" target="_blank" rel="noopener">GitHub<span class="vh"> (opens in a new tab)</span></a>
     </nav>
   </header>
 
@@ -27,12 +27,20 @@
   </main>
 
   <footer class="site">
-    <span>{{ site.description }}</span><span class="sep">·</span><a href="https://github.com/erts-sched" target="_blank" rel="noopener">github.com/erts-sched</a>
+    <span>{{ site.description }}</span><span class="sep" aria-hidden="true">·</span><a href="https://github.com/erts-sched" target="_blank" rel="noopener">github.com/erts-sched<span class="vh"> (opens in a new tab)</span></a>
   </footer>
   <script>
     // external links open in a new tab; internal ones stay in this one
     for (const a of document.querySelectorAll('main a[href^="http"]')) {
-      if (a.hostname !== location.hostname) { a.target = "_blank"; a.rel = "noopener"; }
+      if (a.hostname !== location.hostname) {
+        a.target = "_blank"; a.rel = "noopener";
+        const s = document.createElement("span"); s.className = "vh"; s.textContent = " (opens in a new tab)"; a.appendChild(s);
+      }
+    }
+    // tables keep table semantics; a focusable region scrolls them sideways
+    for (const t of document.querySelectorAll("main table")) {
+      const w = document.createElement("div"); w.className = "table-wrap"; w.tabIndex = 0; w.setAttribute("role", "region"); w.setAttribute("aria-label", "table, scrolls sideways");
+      t.parentNode.insertBefore(w, t); w.appendChild(t);
     }
   </script>
 </body>
