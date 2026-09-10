@@ -46,7 +46,8 @@ OTP 27, 28 and 29 — a network namespace of their own, so no host firewall
 could be the cause — and the outputs are in the measurements repository.
 
 The pull request carries a test that asserts the bound address: red on
-`master` (`right: {:ok, {{0, 0, 0, 0}, ...}}`), green with the change.
+`master` ({% raw %}`right: {:ok, {{0, 0, 0, 0}, ...}}`{% endraw %}), green with
+the change.
 
 ## What the review caught
 
