@@ -1,5 +1,5 @@
 ---
-title: ElixirLS: binding the MCP server to loopback
+title: "ElixirLS: binding the MCP server to loopback"
 ---
 
 # ElixirLS: binding the MCP server to loopback
