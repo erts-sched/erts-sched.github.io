@@ -1,4 +1,11 @@
 title: Guilherme Silva
-description: Security research, Erlang/BEAM
-theme: jekyll-theme-minimal
+description: Trust boundaries of the BEAM runtime, measured
 permalink: pretty
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+exclude:
+  - README.md
