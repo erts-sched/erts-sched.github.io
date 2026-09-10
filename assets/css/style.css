@@ -56,7 +56,6 @@ header.site nav a { color: var(--muted); text-decoration: none; font-size: 0.92r
 header.site nav a:hover, header.site nav a:focus-visible { color: var(--accent); }
 header.site nav a.home { color: var(--ink); font-weight: 600; font-size: 1.08rem; }
 header.site nav .sections { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
-header.site nav a[aria-current] { color: var(--ink); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 main { padding-top: 34px; padding-bottom: 56px; }
 footer.site { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 0; border-top: 1px solid var(--hairline); padding-top: 16px; padding-bottom: 36px; color: var(--muted); font-size: 0.88rem; }
 footer.site a { color: var(--muted); }
